@@ -1,0 +1,51 @@
+version: "3.9"  # Compose file format
+
+
+services:
+  # web:
+  #   image: web
+  #   build: ./web
+  #   ports: 
+  #     - "8000:80"
+  #   # network: tp-bridge
+
+  web2:
+    image: web2
+    build: ./web2
+    ports: 
+      - "8000:8000"
+    # network: tp-bridge
+  
+  db:
+    image: db
+    build: ./db
+    ports: 
+      - "5432:5432"
+    # network: tp-bridge
+
+  words:
+    image: words
+    build: ./words
+    ports: 
+      - "8080:8080"
+    # network: tp-bridge
+
+  narrative:
+    image: narrative
+    build: ./narrative
+    ports:
+      - "8181:8181"
+    models:
+      - llm
+  
+
+models:
+  llm:
+    model: ai/smollm2
+
+
+# compose creates a virtual network between every containers by default
+
+# networks:
+#   tp-bridge: 
+#     driver: bridge

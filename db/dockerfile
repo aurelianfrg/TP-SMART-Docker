@@ -1,0 +1,10 @@
+FROM postgres
+
+# put the database file in the container
+COPY words.sql /docker-entrypoint-initdb.d/words.sql
+# WARNING: this is volatile and by doing this we will not get the eventual modifications on the db
+# to have the db be used in place, you need to use VOLUME= and connect volumes in compose file
+
+# no password
+ENV POSTGRES_HOST_AUTH_METHOD=trust
+

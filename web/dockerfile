@@ -1,0 +1,8 @@
+FROM golang
+
+COPY static static
+COPY dispatcher.go dispatcher.go
+
+RUN go build dispatcher.go
+
+CMD ["./dispatcher"]

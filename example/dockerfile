@@ -1,0 +1,14 @@
+# dockerfile basics
+
+# select initial image
+FROM ubuntu 
+
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install figlet
+
+# can be changed at run time using -e SALUTATION=yo
+ENV SALUTATION="hey"
+
+# way of using an env var in a shell command
+CMD ["sh", "-c", "figlet ${SALUTATION}"]
